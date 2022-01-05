@@ -27,7 +27,7 @@ function addArtist() {
     // Send the new artist to the server as data
     $.ajax({
         method: 'POST',
-        url: '/artist',
+        url: '/artists',
         data: artistToSend
     }).then(function(response) {
         console.log(response);
@@ -51,7 +51,7 @@ function addSong() {
     // Send the new artist to the server as data
     $.ajax({
         method: 'POST',
-        url: '/song',
+        url: '/songs',
         data: newSong
     }).then(function(response) {
         console.log(response);
@@ -66,9 +66,9 @@ function getArtists() {
     // get artist data from the server
     $.ajax({
         method: 'GET',
-        url: '/artist'
+        url: '/artists'
     }).then(function(response) {
-        const listOfArtists = response;
+        // const listOfArtists = response;
         renderArtists(response);
     }).catch(function (error) {
         console.log('error in artist get', error);
@@ -79,7 +79,7 @@ function getSongs() {
     // get song data from the server
     $.ajax({
         method: 'GET',
-        url: '/song'
+        url: '/songs'
     }).then(function (response) {
         renderSongs(response);
     }).catch(function (error) {
