@@ -21,7 +21,7 @@ songsRouter.get('/', (req, res) => {
 songsRouter.post('/', (req, res) => {
     let queryText = `
         INSERT INTO "songs"
-            ("title, "length", "released")
+            ("title", "length", "released")
         VALUES
             ($1, $2, $3)
         `;

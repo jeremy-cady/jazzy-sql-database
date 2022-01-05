@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 
 artistsRouter.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "artists" ORDER BY "year_born" DESC`;
+    const queryText = `SELECT * FROM "artists" ORDER BY "birthdate" DESC`;
 
     pool.query(queryText)
         .then((dbRes) => {
@@ -21,14 +21,14 @@ artistsRouter.get('/', (req, res) => {
 artistsRouter.post('/', (req, res) => {
     let queryText = `
         INSERT INTO "artists"
-            ("artist_name", "year_born")
+            ("name", "birthdate")
         VALUES
             ($1, $2)
         `;
 
     let queryParams = [
-        req.body.artist_name,
-        req.body.year_born
+        req.body.name,
+        req.body.birthdate
     ];
 
     pool.query(queryText, queryParams)
