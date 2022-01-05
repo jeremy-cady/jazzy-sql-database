@@ -1,18 +1,18 @@
 const express = require('express');
 const pg = require('pg');
-const songsRouter = express.Router();
+const songRouter = express.Router();
 const pool = require('../modules/pool');
 
 
-songsRouter.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "songs"`;
+songRouter.get('/', (req, res) => {
+    const queryText = `SELECT * FROM "artists"`;
 
     pool.query(queryText)
         .then((dbRes) => {
             res.send(dbRes.rows);
         })
         .catch((error) => {
-            console.log('GET /songs failed', error);
+            console.log('GET /artists failed', error);
             res.sendStatus(500);
             
         })
@@ -20,16 +20,15 @@ songsRouter.get('/', (req, res) => {
 
 songsRouter.post('/', (req, res) => {
     let queryText = `
-        INSERT INTO "songs"
-            ("title, "length", "released")
+        INSERT INTO "artists"
+            ("artist_name", "year_born")
         VALUES
-            ($1, $2, $3)
+            ($1, $2)
         `;
 
     let queryParams = [
-        req.body.title,
-        req.body.length,
-        req.body.released
+        req.body.artist_name,
+        req.body.year_born
     ];
 
     pool.query(queryText, queryParams)
