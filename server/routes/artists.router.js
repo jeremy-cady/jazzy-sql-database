@@ -1,11 +1,11 @@
 const express = require('express');
 const pg = require('pg');
-const songRouter = express.Router();
+const artistsRouter = express.Router();
 const pool = require('../modules/pool');
 
 
-songRouter.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "artists"`;
+artistsRouter.get('/', (req, res) => {
+    const queryText = `SELECT * FROM "artists" ORDER BY "year_born" DESC`;
 
     pool.query(queryText)
         .then((dbRes) => {
@@ -18,7 +18,7 @@ songRouter.get('/', (req, res) => {
         })
 })
 
-songsRouter.post('/', (req, res) => {
+artistsRouter.post('/', (req, res) => {
     let queryText = `
         INSERT INTO "artists"
             ("artist_name", "year_born")
@@ -43,4 +43,4 @@ songsRouter.post('/', (req, res) => {
     });
 
 
-    modules.exports = songsRouter;
+    module.exports = artistsRouter;

@@ -4,7 +4,7 @@
 [x] add your SQL to the database file
 
 [x] install `pg`
-[ ] setup `pool` to connect to DB
+[x] setup `pool` to connect to DB
 [ ] update `/artist` GET route to get data from the DB
 [ ] sort the data by birth date - youngest to oldest
 [ ] update the `/artist POST route to store data in the DB - 
